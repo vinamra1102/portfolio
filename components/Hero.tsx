@@ -36,7 +36,7 @@ const fadeUp: Variants = {
 };
 
 const stats = [
-  { num: "3+", label: "Projects Built" },
+  { num: "48+", label: "Projects Built" },
   { num: "3+", label: "Hackathons" },
   { num: "1", label: "Internship" },
 ];
@@ -51,15 +51,13 @@ export default function Hero() {
       className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[radial-gradient(ellipse_at_60%_50%,#222_0%,#111_100%)] px-12 pb-12 pt-32 max-md:px-6 max-md:pt-24"
     >
       <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center pt-16">
-        <div className="absolute left-0 top-0 h-20 w-[2px] bg-primary" aria-hidden="true" />
-
         <motion.div
-          className="mb-6 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted"
+          className="mb-6 border-l-2 border-primary pl-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
         >
-          Developer & Cybersecurity Enthusiast
+          Developer &amp; Cybersecurity Enthusiast
         </motion.div>
 
         <motion.h1
@@ -127,9 +125,9 @@ export default function Hero() {
         {stats.map((s, i) => (
           <div
             key={i}
-            className="border-r border-hairline py-6 pr-8 last:border-r-0 max-md:border-b max-md:border-r-0 max-md:last:border-b-0"
+            className="border-hairline py-8 pr-8 max-md:border-b max-md:last:border-b-0 md:border-r md:last:border-r-0"
           >
-            <div className="font-display text-[48px] font-black leading-none tracking-[-1px] text-white max-md:text-[36px]">
+            <div className="font-display text-[56px] font-black leading-none tracking-[-2px] text-white max-md:text-[40px]">
               {s.num}
             </div>
             <div className="mt-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
