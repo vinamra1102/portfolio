@@ -34,3 +34,6 @@ next-env.d.ts
 
 # source template
 /pz/
+
+# claude code
+.claude/
