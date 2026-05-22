@@ -41,14 +41,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-12 max-lg:grid-cols-3 max-md:grid-cols-2">
           <div className="max-lg:col-span-full">
-            <a href="#hero" className="inline-flex items-baseline gap-1">
-              <span className="font-display text-[28px] font-black leading-none tracking-[-0.5px] text-white">
-                VINAMRA
-              </span>
-              <span className="text-base font-bold uppercase tracking-[1.4px] text-white">
-                B
-              </span>
-              <span className="text-primary">·</span>
+            <a href="#hero" className="font-display text-[22px] font-black uppercase leading-none tracking-[0.5px] text-white">
+              VINAMRA BHONSLE
             </a>
             <p className="mt-4 max-w-[280px] text-[13px] leading-relaxed text-muted">
               Developer and cybersecurity enthusiast building secure, robust
