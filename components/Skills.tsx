@@ -5,6 +5,24 @@ import clsx from "clsx";
 import { skillCategories } from "@/lib/skills";
 import Reveal from "./Reveal";
 
+const tickerItems = [
+  "React",
+  "Node",
+  "Postgres",
+  "Python",
+  "Django",
+  "TypeScript",
+  "Docker",
+  "Next.js",
+  "FastAPI",
+  "Tailwind",
+  "Firebase",
+  "Wireshark",
+  "Java",
+  "Git",
+  "Kubernetes",
+];
+
 export default function Skills() {
   const gridRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -89,6 +107,21 @@ export default function Skills() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* ── scrolling tech ticker ── */}
+      <div className="overflow-hidden border-y border-hairline bg-canvas-dark py-5">
+        <div className="inline-flex animate-marquee whitespace-nowrap">
+          {[...tickerItems, ...tickerItems].map((t, i) => (
+            <span
+              key={i}
+              className="flex items-center px-5 font-display text-[14px] font-bold uppercase tracking-[1.6px] text-white"
+            >
+              {t}
+              <span className="ml-10 inline-block h-[5px] w-[5px] rotate-45 bg-primary" />
+            </span>
+          ))}
         </div>
       </div>
 
