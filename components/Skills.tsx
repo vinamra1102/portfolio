@@ -116,7 +116,7 @@ export default function Skills() {
             <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
               Expertise
             </div>
-            <h2 className="mt-4 font-display text-[40px] font-black uppercase leading-[0.95] tracking-[-1.2px] text-white md:text-[56px] md:tracking-[-1.4px]">
+            <h2 className="mt-4 font-display text-[40px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
               Built for security.
             </h2>
             <p className="mt-6 max-w-[380px] text-sm leading-[1.7] text-body">
@@ -149,7 +149,7 @@ export default function Skills() {
                 className="bg-[#1e1e1e] p-6"
                 style={{ opacity: 0 }}
               >
-                <div className="mb-4 inline-block border border-hairline px-2 py-[3px] text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                <div className="mb-4 inline-block border border-hairline px-2 py-[3px] font-display text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                   {cat.name}
                 </div>
                 {cat.items.map((s) => (
@@ -185,7 +185,7 @@ export default function Skills() {
           {[...tickerItems, ...tickerItems].map((t, i) => (
             <span
               key={i}
-              className="flex items-center px-5 font-display text-[14px] font-bold uppercase tracking-[1.6px] text-white"
+              className="flex items-center px-5 font-display text-[14px] font-semibold uppercase tracking-[1.6px] text-white"
             >
               {t}
               <span className="ml-10 inline-block h-[5px] w-[5px] rotate-45 bg-primary" />
@@ -196,7 +196,7 @@ export default function Skills() {
 
       <div className="livery-band px-16 py-12 max-lg:px-8 max-md:px-6">
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-8 max-md:hidden">
-          <div className="font-display text-[36px] font-black uppercase leading-[0.95] tracking-[-1px] text-white max-lg:text-[26px]">
+          <div className="font-display text-[48px] font-bold uppercase leading-[0.95] tracking-[1px] text-white max-lg:text-[32px]">
             Available for internships &amp; full-time roles
           </div>
           <a
@@ -209,7 +209,7 @@ export default function Skills() {
 
         <div className="relative z-10 hidden max-md:block">
           <div className="overflow-hidden">
-            <div className="inline-flex animate-marquee whitespace-nowrap font-display text-[26px] font-black uppercase tracking-[-0.26px] text-white">
+            <div className="inline-flex animate-marquee whitespace-nowrap font-display text-[26px] font-bold uppercase tracking-[0.5px] text-white">
               <span className="pr-8">
                 Available for internships &amp; full-time roles &middot;
                 Available for internships &amp; full-time roles &middot;{" "}
