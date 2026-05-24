@@ -134,17 +134,40 @@
   opacity: 0;
 }
 
-/* ── section divider ── */
+/* ── diagonal section divider ── */
 .section-divider {
+  position: relative;
+  height: 80px;
+  margin-top: -80px;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+.section-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--canvas-deep, #111111);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+.section-divider::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #303030 20%,
-    #303030 80%,
+    rgba(218, 41, 28, 0.15) 50%,
     transparent 100%
   );
-  margin: 0;
+}
+
+/* Inverted diagonal for alternating sections */
+.section-divider--inv::before {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
 
 /* ── metallic shine sweep for primary red buttons ── */

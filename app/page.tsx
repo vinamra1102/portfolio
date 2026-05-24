@@ -14,9 +14,10 @@ export default function HomePage() {
         <Hero />
         <div className="section-divider" />
         <Projects />
-        <div className="section-divider" />
+        <div className="section-divider section-divider--inv" />
         <Skills />
         <About />
+        <div className="section-divider" />
         <Contact />
       </main>
       <Footer />
