@@ -12,7 +12,9 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <div className="section-divider" />
         <Projects />
+        <div className="section-divider" />
         <Skills />
         <About />
         <Contact />
