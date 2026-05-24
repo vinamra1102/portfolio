@@ -114,9 +114,10 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-canvas-light px-12 py-24 text-on-light max-md:px-6 max-md:py-16"
+      className="relative bg-canvas-light px-12 py-24 text-on-light overflow-hidden max-md:px-6 max-md:py-16"
     >
-      <div className="mx-auto max-w-[640px] text-center">
+      <div className="section-watermark section-watermark--light" aria-hidden="true">Contact</div>
+      <div className="relative z-[1] mx-auto max-w-[640px] text-center">
         {/* Heading — scale + blur reveal */}
         <div ref={headingRef} style={{ opacity: 0 }}>
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">

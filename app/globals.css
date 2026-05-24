@@ -237,6 +237,29 @@
   background-size: 256px 256px;
 }
 
+/* ── section watermark ── */
+.section-watermark {
+  position: absolute;
+  top: 50%;
+  right: -2%;
+  transform: translateY(-50%);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(120px, 18vw, 280px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -4px;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+.section-watermark--light {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.04);
+}
+
 /* ── skill card hover ── */
 [data-skill-card] {
   transition: border-color 0.25s ease;

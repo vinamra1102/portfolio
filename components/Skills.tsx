@@ -108,8 +108,9 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="bg-canvas-dark py-24">
-      <div className="mx-auto max-w-7xl px-12 max-md:px-6">
+    <section id="skills" className="relative bg-canvas-dark py-24 overflow-hidden">
+      <div className="section-watermark" aria-hidden="true">Skills</div>
+      <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <div className="mb-24 grid grid-cols-[40%_60%] gap-12 max-lg:grid-cols-1">
           {/* Left column — heading enters from left */}
           <div ref={headingRef} className="pr-12 max-lg:pr-0">

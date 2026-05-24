@@ -93,8 +93,9 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="bg-canvas-dark py-24">
-      <div className="mx-auto max-w-7xl px-12 max-md:px-6">
+    <section id="about" className="relative bg-canvas-dark py-24 overflow-hidden">
+      <div className="section-watermark" aria-hidden="true">About</div>
+      <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <div className="grid grid-cols-[55%_45%] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-12">
           {/* Left column */}
           <div ref={leftRef}>

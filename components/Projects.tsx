@@ -109,8 +109,9 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="work" className="bg-canvas-dark py-24" ref={sectionRef}>
-      <div className="mx-auto max-w-7xl px-12 max-md:px-6">
+    <section id="work" className="relative bg-canvas-dark py-24 overflow-hidden" ref={sectionRef}>
+      <div className="section-watermark" aria-hidden="true">Work</div>
+      <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <header ref={headerRef} className="mb-12 flex flex-col gap-4">
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             Selected Work
