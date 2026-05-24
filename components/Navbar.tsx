@@ -63,10 +63,10 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={clsx(
-        "fixed inset-x-0 top-0 z-[100] h-16 border-b border-hairline transition-all duration-300",
+        "fixed inset-x-0 top-0 z-[100] h-16 border-b transition-all duration-300",
         scrolled
-          ? "bg-[rgba(24,24,24,0.95)] backdrop-blur-[12px]"
-          : "bg-[rgba(24,24,24,0)]"
+          ? "border-[rgba(218,41,28,0.2)] bg-[rgba(24,24,24,0.95)] backdrop-blur-[12px]"
+          : "border-transparent bg-[rgba(24,24,24,0)]"
       )}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-8 px-12 max-md:px-6">
@@ -95,7 +95,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active max-md:hidden"
+          className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active max-md:hidden"
         >
           Hire Me
         </a>
@@ -130,7 +130,7 @@ export default function Navbar() {
           ))}
           <a
             href="#contact"
-            className="inline-flex h-12 w-full items-center justify-center bg-primary text-sm font-bold uppercase tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+            className="btn-red inline-flex h-12 w-full items-center justify-center bg-primary text-sm font-bold uppercase tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
             onClick={() => setMobileOpen(false)}
           >
             Hire Me
