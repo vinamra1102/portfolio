@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --red: #da291c;
+  --red-active: #b01e0a;
+  --red-glow: rgba(218, 41, 28, 0.12);
+  --red-glow-strong: rgba(218, 41, 28, 0.2);
+  --canvas: #181818;
+  --canvas-deep: #111111;
+  --canvas-elevated: #303030;
+  --canvas-mid: #1e1e1e;
+  --hairline: #303030;
+  --body: #969696;
+  --ink: #ffffff;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -112,6 +126,104 @@
 }
 .cursor-dot.is-hidden {
   opacity: 0;
+}
+
+/* ── section divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #303030 20%,
+    #303030 80%,
+    transparent 100%
+  );
+  margin: 0;
+}
+
+/* ── metallic shine sweep for primary red buttons ── */
+.btn-red {
+  position: relative;
+  overflow: hidden;
+}
+.btn-red::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+.btn-red:hover::after {
+  animation: shine-sweep 0.5s ease forwards;
+}
+
+/* ── outline button shine (for buttons on red bg) ── */
+.btn-outline-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-outline-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+.btn-outline-shine:hover::after {
+  animation: shine-sweep 0.5s ease forwards;
+}
+
+/* ── livery band gradient + noise ── */
+.livery-band {
+  position: relative;
+  background: linear-gradient(135deg, #a00c01 0%, #da291c 50%, #c4220f 100%);
+}
+.livery-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ── skill card hover ── */
+[data-skill-card] {
+  transition: border-color 0.25s ease;
+  border-top: 2px solid transparent;
+}
+[data-skill-card]:hover {
+  border-color: #3a1a18;
+  border-top-color: rgba(218, 41, 28, 0.4);
+}
+
+/* ── about info row hover ── */
+[data-info-row] {
+  transition: background-color 0.2s ease;
+}
+[data-info-row]:hover {
+  background-color: rgba(218, 41, 28, 0.04);
 }
 
 /* ── submit button metallic shine sweep (step 15) ── */
