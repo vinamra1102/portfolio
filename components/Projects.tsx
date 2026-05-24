@@ -115,7 +115,7 @@ export default function Projects() {
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             Selected Work
           </div>
-          <h2 className="font-display text-[40px] font-black uppercase leading-[0.95] tracking-[-1.2px] text-white md:text-[56px] md:tracking-[-1.4px]">
+          <h2 className="font-display text-[40px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
             Projects that ship.
           </h2>
         </header>
@@ -213,7 +213,7 @@ function ProjectCard({
         style={{ background: p.gradient }}
       >
         <div
-          className="font-display text-5xl font-black uppercase tracking-[-1px] text-white transition-opacity duration-300"
+          className="font-display text-5xl font-bold uppercase tracking-[-1px] text-white transition-opacity duration-300"
           style={{ opacity: hovered ? 0.14 : 0.06 }}
         >
           {p.name}
@@ -223,7 +223,7 @@ function ProjectCard({
         <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
           {p.num}
         </div>
-        <h3 className="mt-2 text-lg font-bold tracking-[-0.2px] text-white">
+        <h3 className="mt-2 font-display text-[20px] font-semibold tracking-[0.2px] text-white">
           {p.name}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-body">{p.desc}</p>
