@@ -131,7 +131,7 @@ export default function Skills() {
             </p>
             <a
               href="/resume.pdf"
-              className="mt-8 inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+              className="btn-red mt-8 inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
             >
               Download CV
             </a>
@@ -149,7 +149,7 @@ export default function Skills() {
                 className="bg-[#1e1e1e] p-6"
                 style={{ opacity: 0 }}
               >
-                <div className="mb-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                <div className="mb-4 inline-block border border-hairline px-2 py-[3px] text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                   {cat.name}
                 </div>
                 {cat.items.map((s) => (
@@ -167,6 +167,7 @@ export default function Skills() {
                         style={{
                           left: `${Math.max(0, Math.min(100, s.pct) - 3)}%`,
                           transform: "scaleX(0)",
+                          boxShadow: "0 0 6px rgba(218,41,28,0.5)",
                         }}
                       />
                     </div>
@@ -193,20 +194,20 @@ export default function Skills() {
         </div>
       </div>
 
-      <div className="bg-primary px-16 py-12 max-lg:px-8 max-md:px-6">
-        <div className="flex flex-wrap items-center justify-between gap-8 max-md:hidden">
+      <div className="livery-band px-16 py-12 max-lg:px-8 max-md:px-6">
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-8 max-md:hidden">
           <div className="font-display text-[36px] font-black uppercase leading-[0.95] tracking-[-1px] text-white max-lg:text-[26px]">
             Available for internships &amp; full-time roles
           </div>
           <a
             href="#contact"
-            className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
+            className="btn-outline-shine inline-flex h-12 items-center justify-center whitespace-nowrap border border-white/60 bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-all duration-200 hover:border-white hover:bg-white/[0.08]"
           >
             Get In Touch &rarr;
           </a>
         </div>
 
-        <div className="hidden max-md:block">
+        <div className="relative z-10 hidden max-md:block">
           <div className="overflow-hidden">
             <div className="inline-flex animate-marquee whitespace-nowrap font-display text-[26px] font-black uppercase tracking-[-0.26px] text-white">
               <span className="pr-8">
@@ -221,7 +222,7 @@ export default function Skills() {
           </div>
           <a
             href="#contact"
-            className="mt-6 inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
+            className="btn-outline-shine mt-6 inline-flex h-12 items-center justify-center whitespace-nowrap border border-white/60 bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-all duration-200 hover:border-white hover:bg-white/[0.08]"
           >
             Get In Touch &rarr;
           </a>
