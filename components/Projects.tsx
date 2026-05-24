@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
@@ -16,7 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type FilterValue = "all" | ProjectCategory;
 
-/* ── AnimatePresence variants for filter transitions (step 6) ── */
+/* ── AnimatePresence variants for filter transitions ── */
 const cardFilterVariants = {
   initial: { opacity: 0, scale: 0.95 },
   animate: (i: number) => ({
@@ -35,17 +35,24 @@ const cardFilterVariants = {
   },
 };
 
+const featured = projects[0]; // #01
+const rest = projects.slice(1);
+
 export default function Projects() {
   const [filter, setFilter] = useState<FilterValue>("all");
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const featuredRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
   const visible =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
+    filter === "all" ? rest : rest.filter((p) => p.category === filter);
 
-  /* ── GSAP clip-path reveal on initial load (step 4) ── */
+  const showFeatured =
+    filter === "all" || featured.category === filter;
+
+  /* ── GSAP clip-path reveal on initial load ── */
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -80,6 +87,34 @@ export default function Projects() {
     return () => ctx.revert();
   }, []);
 
+  /* ── Featured card reveal ── */
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced || !featuredRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        featuredRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: featuredRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+    }, featuredRef.current!);
+
+    return () => ctx.revert();
+  }, []);
+
   /* ── Header reveal ── */
   useEffect(() => {
     const prefersReduced = window.matchMedia(
@@ -109,8 +144,14 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="work" className="relative bg-canvas-dark py-24 overflow-hidden" ref={sectionRef}>
-      <div className="section-watermark" aria-hidden="true">Work</div>
+    <section
+      id="work"
+      className="relative overflow-hidden bg-canvas-dark py-24"
+      ref={sectionRef}
+    >
+      <div className="section-watermark" aria-hidden="true">
+        Work
+      </div>
       <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <header ref={headerRef} className="mb-12 flex flex-col gap-4">
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
@@ -120,6 +161,78 @@ export default function Projects() {
             Projects that ship.
           </h2>
         </header>
+
+        {/* ── Featured project #01 — full-width hero card ── */}
+        {showFeatured && (
+          <div
+            ref={featuredRef}
+            className="group mb-12 grid grid-cols-[1fr_1fr] overflow-hidden border border-hairline bg-[#111111] transition-all duration-300 hover:bg-[#1a1a1a] max-lg:grid-cols-1"
+            style={{
+              borderLeft: "4px solid #da291c",
+              boxShadow: "-8px 0 32px rgba(218,41,28,0.12)",
+              opacity: 0,
+            }}
+          >
+            {/* Left — visual */}
+            <div
+              className="relative flex min-h-[320px] items-center justify-center overflow-hidden max-lg:min-h-[240px]"
+              style={{ background: featured.gradient }}
+            >
+              {/* Giant watermark number */}
+              <div
+                className="pointer-events-none select-none font-display font-bold leading-none tracking-[-4px]"
+                style={{
+                  fontSize: "clamp(120px, 14vw, 200px)",
+                  color: "rgba(255,255,255,0.04)",
+                }}
+                aria-hidden="true"
+              >
+                {featured.num}
+              </div>
+              {/* Name ghost */}
+              <div
+                className="absolute inset-0 flex items-center justify-center font-display text-5xl font-bold uppercase tracking-[-1px] text-white opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14]"
+                aria-hidden="true"
+              >
+                {featured.name}
+              </div>
+            </div>
+
+            {/* Right — info */}
+            <div className="flex flex-col justify-center p-10 max-lg:p-8">
+              <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                Featured Project &middot; {featured.num}
+              </div>
+              <h3 className="mt-3 font-display text-[28px] font-semibold tracking-[0.2px] text-white md:text-[32px]">
+                {featured.name}
+              </h3>
+              <p className="mt-3 max-w-[440px] text-sm leading-relaxed text-body">
+                {featured.desc}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {featured.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-[#3a1a18] px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-primary"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-8 flex items-center justify-between border-t border-hairline pt-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                  {featured.year}
+                </span>
+                <a
+                  href={`#project-${featured.slug}`}
+                  className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-white transition-transform duration-200 group-hover:translate-x-[6px]"
+                >
+                  View Project <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div
           className="mb-12 flex gap-8 border-b border-hairline"
@@ -166,7 +279,7 @@ export default function Projects() {
   );
 }
 
-/* ── Project card with hover effects (step 5) ── */
+/* ── Project card with hover effects ── */
 function ProjectCard({
   project: p,
   index,
@@ -177,7 +290,6 @@ function ProjectCard({
   useClipReveal: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
-  const isFeatured = p.num === "01";
 
   return (
     <motion.article
@@ -191,18 +303,10 @@ function ProjectCard({
       className="project-card flex flex-col transition-all duration-[250ms]"
       style={{
         backgroundColor: hovered ? "#1e1e1e" : "#111111",
-        borderLeft: isFeatured
-          ? "4px solid #da291c"
-          : hovered
-            ? "4px solid #da291c"
-            : "4px solid transparent",
-        boxShadow: isFeatured
-          ? hovered
-            ? "-8px 0 32px rgba(218,41,28,0.12), 0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
-            : "-8px 0 32px rgba(218,41,28,0.12)"
-          : hovered
-            ? "0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
-            : "none",
+        borderLeft: hovered ? "4px solid #da291c" : "4px solid transparent",
+        boxShadow: hovered
+          ? "0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
+          : "none",
         clipPath: useClipReveal ? "inset(100% 0 0 0)" : "inset(0% 0 0 0)",
       }}
       data-category={p.category}
