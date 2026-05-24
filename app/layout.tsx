@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
-import SmoothScrollProvider from "./providers/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,10 +55,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${barlow.variable}`}>
       <body>
-        <SmoothScrollProvider>
-          <Cursor />
-          {children}
-        </SmoothScrollProvider>
+        <Cursor />
+        {children}
       </body>
     </html>
   );
