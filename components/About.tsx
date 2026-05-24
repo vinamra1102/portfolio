@@ -93,7 +93,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-24">
+    <section id="about" className="bg-canvas-dark py-24">
       <div className="mx-auto max-w-7xl px-12 max-md:px-6">
         <div className="grid grid-cols-[55%_45%] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-12">
           {/* Left column */}
@@ -147,13 +147,13 @@ export default function About() {
             <div data-para className="mt-8 flex flex-wrap gap-4">
               <a
                 href="/resume.pdf"
-                className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
+                className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-[#969696] bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-[#969696] transition-all duration-200 hover:border-white hover:bg-white/[0.04] hover:text-white"
               >
                 View R&eacute;sum&eacute;
               </a>
               <a
                 href="https://www.linkedin.com/in/vinamra-bhonsle-b2b569219/"
-                className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
+                className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-[#969696] bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-[#969696] transition-all duration-200 hover:border-white hover:bg-white/[0.04] hover:text-white"
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -165,11 +165,20 @@ export default function About() {
           {/* Right card */}
           <aside
             ref={cardRef}
-            className="border border-hairline bg-[#222] p-8"
+            className="border border-hairline border-t-2 border-t-primary bg-[#1a1a1a] p-8"
             style={{ opacity: 0 }}
           >
-            <div className="mb-6 flex aspect-[4/3] w-full items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#2a2a2a]">
-              <div className="font-display text-[80px] font-black leading-none tracking-[-1.6px] text-[#303030]">
+            <div
+              className="mb-6 flex aspect-[4/3] w-full items-center justify-center"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, rgba(218,41,28,0.06) 0%, #1e1e1e 60%)",
+              }}
+            >
+              <div
+                className="font-display text-[80px] font-black leading-none tracking-[-1.6px]"
+                style={{ color: "#da291c", opacity: 0.12 }}
+              >
                 VB
               </div>
             </div>
