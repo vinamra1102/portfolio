@@ -16,6 +16,7 @@ export default function Navbar() {
   const [active, setActive] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  /* ── Step 16: Scroll-aware background transition ── */
   useEffect(() => {
     let frame = 0;
     const onScroll = () => {
@@ -33,6 +34,7 @@ export default function Navbar() {
     };
   }, []);
 
+  /* ── Step 17: IntersectionObserver active section highlight ── */
   useEffect(() => {
     const sections = links
       .map((l) => document.getElementById(l.id))
@@ -61,14 +63,17 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={clsx(
-        "fixed inset-x-0 top-0 z-[100] h-16 border-b border-hairline transition-colors duration-300",
+        "fixed inset-x-0 top-0 z-[100] h-16 border-b border-hairline transition-all duration-300",
         scrolled
-          ? "bg-canvas"
-          : "bg-[rgba(24,24,24,0.92)] backdrop-blur-[12px]"
+          ? "bg-[rgba(24,24,24,0.95)] backdrop-blur-[12px]"
+          : "bg-[rgba(24,24,24,0)]"
       )}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-8 px-12 max-md:px-6">
-        <a href="#hero" className="font-display text-[15px] font-black uppercase leading-none tracking-[0.5px] text-white lg:text-[17px]">
+        <a
+          href="#hero"
+          className="font-display text-[15px] font-black uppercase leading-none tracking-[0.5px] text-white lg:text-[17px]"
+        >
           VINAMRA BHONSLE
         </a>
 
