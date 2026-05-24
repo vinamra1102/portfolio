@@ -111,27 +111,35 @@
   transform: translateY(0);
 }
 
+/* ── custom cursor: red dot + trailing ring ── */
 .cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 4px;
-  height: 4px;
-  background: #fff;
+  width: 6px;
+  height: 6px;
+  background: #da291c;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 9999;
-  transform: translate3d(-50%, -50%, 0);
-  transition: width 0.15s ease, height 0.15s ease, background 0.15s ease,
-    opacity 0.15s ease, border-color 0.15s ease;
-  mix-blend-mode: difference;
-}
-.cursor-dot.is-cta {
-  width: 24px;
-  height: 24px;
-}
-.cursor-dot.is-hidden {
   opacity: 0;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.15s ease;
+  will-change: transform;
+}
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(218, 41, 28, 0.35);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+    opacity 0.15s ease;
+  will-change: transform;
 }
 
 /* ── diagonal section divider ── */
@@ -308,7 +316,8 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  .cursor-dot {
+  .cursor-dot,
+  .cursor-ring {
     display: none;
   }
 }
