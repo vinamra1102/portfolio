@@ -122,7 +122,7 @@ export default function Contact() {
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             Let&rsquo;s build something
           </div>
-          <h2 className="mt-4 font-display text-[44px] font-black uppercase leading-[0.95] tracking-[-1.4px] text-on-light md:text-[56px] lg:text-[80px] lg:tracking-[-2px]">
+          <h2 className="mt-4 font-display text-[44px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-on-light md:text-[56px] lg:text-[80px]">
             Ready when you are.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
