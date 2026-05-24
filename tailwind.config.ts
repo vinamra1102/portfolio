@@ -31,8 +31,9 @@ const config: Config = {
         "on-light": "#181818",
       },
       fontFamily: {
-        display: ["var(--font-barlow)", "sans-serif"],
-        body: ["var(--font-inter)", "-apple-system", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        sans: ["var(--font-body)", "sans-serif"],
       },
       maxWidth: {
         container: "1280px",
