@@ -106,7 +106,7 @@ export default function Hero() {
 
         {/* Headline — word-by-word blur reveal */}
         <motion.h1
-          className="font-display text-[40px] font-black uppercase leading-[0.9] tracking-[-1px] text-white md:text-[56px] md:tracking-[-2px] lg:text-[80px] lg:tracking-[-3px]"
+          className="font-display text-[clamp(52px,8vw,96px)] font-bold uppercase leading-[0.9] tracking-[-1px] text-white"
           variants={wordContainer}
           initial="hidden"
           animate="visible"
@@ -123,7 +123,7 @@ export default function Hero() {
             ))}
           </span>
           <motion.span
-            className="mt-4 block overflow-hidden text-[clamp(20px,4.5vw,56px)] leading-none tracking-[-1.4px] text-body"
+            className="mt-4 block overflow-hidden text-[clamp(20px,4.5vw,56px)] font-normal leading-none tracking-[-0.5px] text-body"
             variants={subtitleVariant}
           >
             {headlineSecondary.map((w, i) => (
@@ -200,7 +200,7 @@ export default function Hero() {
                 aria-hidden="true"
               />
             )}
-            <div className="font-display text-[56px] font-black leading-none tracking-[-2px] text-white max-md:text-[40px]">
+            <div className="font-display text-[56px] font-bold leading-none tracking-[-1px] text-white max-md:text-[40px]">
               <CountUp to={s.to} suffix={s.suffix} duration={1.5} />
             </div>
             <div className="mt-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
