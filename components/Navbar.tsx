@@ -72,9 +72,10 @@ export default function Navbar() {
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-8 px-12 max-md:px-6">
         <a
           href="#hero"
-          className="font-display text-[15px] font-black uppercase leading-none tracking-[0.5px] text-white lg:text-[17px]"
+          className="inline-flex items-baseline leading-none text-white"
         >
-          VINAMRA BHONSLE
+          <span className="font-display text-[15px] font-bold uppercase tracking-[2px] lg:text-[16px]">VINAMRA</span>
+          <span className="ml-[5px] font-sans text-[15px] font-normal tracking-[2px] lg:text-[16px]">BHONSLE</span>
         </a>
 
         <ul className="flex items-center gap-8 max-md:hidden">
