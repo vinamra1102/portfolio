@@ -114,6 +114,35 @@
   opacity: 0;
 }
 
+/* ── submit button metallic shine sweep (step 15) ── */
+.submit-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transform: skewX(-20deg);
+  transition: none;
+}
+.submit-btn:hover::after {
+  animation: shine-sweep 0.5s ease forwards;
+}
+@keyframes shine-sweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
 @media (hover: none), (pointer: coarse) {
   .cursor-dot {
     display: none;
