@@ -77,7 +77,23 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[radial-gradient(ellipse_at_60%_50%,#222_0%,#111_100%)] px-12 pb-12 pt-32 max-md:px-6 max-md:pt-24"
     >
+      {/* Red ambient glow — bottom left */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 h-[300px] w-[600px]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 0% 100%, rgba(218,41,28,0.06) 0%, transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
+
       <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center pt-16">
+        {/* Vertical red accent line */}
+        <div
+          className="absolute left-0 top-24 hidden h-[80px] w-[2px] bg-primary lg:block"
+          aria-hidden="true"
+        />
+
         {/* Eyebrow */}
         <motion.div
           className="mb-6 border-l-2 border-primary pl-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted"
@@ -142,7 +158,7 @@ export default function Hero() {
         >
           <motion.a
             href="#work"
-            className="inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+            className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
             variants={ctaChild}
           >
             View My Work
@@ -171,8 +187,19 @@ export default function Hero() {
         {stats.map((s, i) => (
           <div
             key={i}
-            className="border-hairline py-8 pr-8 max-md:border-b max-md:last:border-b-0 md:border-r md:last:border-r-0"
+            className="relative py-8 pr-8 max-md:border-b max-md:border-hairline max-md:last:border-b-0"
           >
+            {/* Gradient fade divider between stats (desktop only) */}
+            {i < stats.length - 1 && (
+              <div
+                className="absolute right-0 top-1/2 hidden h-[80px] w-px -translate-y-1/2 md:block"
+                style={{
+                  background:
+                    "linear-gradient(180deg, transparent 0%, #303030 30%, #303030 70%, transparent 100%)",
+                }}
+                aria-hidden="true"
+              />
+            )}
             <div className="font-display text-[56px] font-black leading-none tracking-[-2px] text-white max-md:text-[40px]">
               <CountUp to={s.to} suffix={s.suffix} duration={1.5} />
             </div>
