@@ -37,7 +37,7 @@ const groups = [
 
 export default function Footer() {
   return (
-    <footer className="bg-canvas-dark px-12 py-16 max-md:px-6">
+    <footer className="border-t border-[#1a1a1a] bg-[#0d0d0d] px-12 py-16 max-md:px-6">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-12 max-lg:grid-cols-3 max-md:grid-cols-2">
           <div className="max-lg:col-span-full">
@@ -60,7 +60,7 @@ export default function Footer() {
                   <li key={item.label}>
                     <a
                       href={item.href}
-                      className="text-[13px] font-semibold uppercase tracking-[0.65px] text-muted transition-colors hover:text-white"
+                      className="text-[13px] font-semibold uppercase tracking-[0.65px] text-muted transition-colors duration-200 hover:text-white"
                       {...(item.href.startsWith("http")
                         ? { target: "_blank", rel: "noreferrer noopener" }
                         : {})}
@@ -74,7 +74,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-6">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[#1a1a1a] pt-6">
           <div className="text-[13px] text-muted">
             &copy; {new Date().getFullYear()} Vinamra Bhonsle. All rights reserved.
           </div>
@@ -82,6 +82,7 @@ export default function Footer() {
             Built with precision{" "}
             <span
               className="inline-block h-[6px] w-[6px] rounded-full bg-primary"
+              style={{ boxShadow: "0 0 8px rgba(218,41,28,0.6)" }}
               aria-hidden="true"
             />
           </div>
