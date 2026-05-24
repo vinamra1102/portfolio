@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
@@ -258,10 +258,11 @@ export default function Projects() {
           ))}
         </div>
 
+        {/* Desktop grid */}
         <motion.div
           ref={gridRef}
           layout
-          className="grid grid-cols-3 gap-px border border-hairline bg-hairline max-lg:grid-cols-2 max-md:grid-cols-1"
+          className="grid grid-cols-3 gap-px border border-hairline bg-hairline max-lg:grid-cols-2 max-md:hidden"
         >
           <AnimatePresence mode="popLayout">
             {visible.map((p, i) => (
@@ -274,6 +275,9 @@ export default function Projects() {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Mobile horizontal scroll gallery */}
+        <MobileScrollGallery projects={visible} />
       </div>
     </section>
   );
@@ -362,5 +366,89 @@ function ProjectCard({
         </div>
       </div>
     </motion.article>
+  );
+}
+
+/* ── Mobile horizontal scroll gallery ── */
+function MobileScrollGallery({ projects }: { projects: Project[] }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  const onScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max > 0 ? el.scrollLeft / max : 0);
+  }, []);
+
+  return (
+    <div className="hidden max-md:block">
+      {/* Scroll hint */}
+      <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+        <span>Scroll</span>
+        <span aria-hidden="true">&rarr;</span>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4"
+        onScroll={onScroll}
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {projects.map((p) => (
+          <article
+            key={p.slug}
+            className="w-[85vw] flex-shrink-0 snap-start border border-hairline bg-[#111111]"
+          >
+            <div
+              className="relative flex h-48 items-center justify-center overflow-hidden"
+              style={{ background: p.gradient }}
+            >
+              <div className="font-display text-4xl font-bold uppercase tracking-[-1px] text-white opacity-[0.06]">
+                {p.name}
+              </div>
+            </div>
+            <div className="flex flex-col p-5">
+              <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                {p.num}
+              </div>
+              <h3 className="mt-2 font-display text-[18px] font-semibold tracking-[0.2px] text-white">
+                {p.name}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-body">{p.desc}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {p.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-[#303030] px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-[#b8b8b8]"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-4 flex items-center justify-between border-t border-hairline pt-4">
+                <span className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+                  {p.year}
+                </span>
+                <a
+                  href={`#project-${p.slug}`}
+                  className="text-[13px] font-bold uppercase tracking-[1.4px] text-white"
+                >
+                  View &rarr;
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Progress bar */}
+      <div className="mt-2 h-[2px] w-full overflow-hidden bg-hairline">
+        <div
+          className="h-full bg-primary transition-[width] duration-100"
+          style={{ width: `${Math.max(5, progress * 100)}%` }}
+        />
+      </div>
+    </div>
   );
 }
