@@ -109,7 +109,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="work" className="py-24" ref={sectionRef}>
+    <section id="work" className="bg-canvas-dark py-24" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-12 max-md:px-6">
         <header ref={headerRef} className="mb-12 flex flex-col gap-4">
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
@@ -134,7 +134,7 @@ export default function Projects() {
                 "-mb-px border-b-2 py-4 text-[13px] font-semibold uppercase tracking-[0.65px] transition-colors",
                 filter === tab.value
                   ? "border-primary text-white"
-                  : "border-transparent text-muted hover:text-white"
+                  : "border-transparent text-[#666] hover:text-white"
               )}
               onClick={() => setFilter(tab.value)}
               type="button"
@@ -176,6 +176,7 @@ function ProjectCard({
   useClipReveal: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
+  const isFeatured = p.num === "01";
 
   return (
     <motion.article
@@ -186,12 +187,21 @@ function ProjectCard({
       animate="animate"
       exit="exit"
       custom={index}
-      className="project-card flex flex-col transition-colors duration-[250ms]"
+      className="project-card flex flex-col transition-all duration-[250ms]"
       style={{
-        backgroundColor: hovered ? "#1e1e1e" : "#181818",
-        borderLeft: hovered
+        backgroundColor: hovered ? "#1e1e1e" : "#111111",
+        borderLeft: isFeatured
           ? "4px solid #da291c"
-          : "4px solid transparent",
+          : hovered
+            ? "4px solid #da291c"
+            : "4px solid transparent",
+        boxShadow: isFeatured
+          ? hovered
+            ? "-8px 0 32px rgba(218,41,28,0.12), 0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
+            : "-8px 0 32px rgba(218,41,28,0.12)"
+          : hovered
+            ? "0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
+            : "none",
         clipPath: useClipReveal ? "inset(100% 0 0 0)" : "inset(0% 0 0 0)",
       }}
       data-category={p.category}
@@ -221,7 +231,11 @@ function ProjectCard({
           {p.tech.map((t) => (
             <span
               key={t}
-              className="rounded-full bg-canvas-elevated px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-[#b8b8b8]"
+              className="rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] transition-colors duration-200"
+              style={{
+                backgroundColor: hovered ? "#3a1a18" : "#303030",
+                color: hovered ? "#da291c" : "#b8b8b8",
+              }}
             >
               {t}
             </span>
