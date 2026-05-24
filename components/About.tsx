@@ -102,7 +102,7 @@ export default function About() {
               <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                 About
               </div>
-              <h2 className="mt-4 font-display text-[44px] font-black uppercase leading-[0.95] tracking-[-1.4px] text-white md:text-[56px] lg:text-[80px] lg:tracking-[-2px]">
+              <h2 className="mt-4 font-display text-[44px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px] lg:text-[80px]">
                 Engineered for security.
               </h2>
             </div>
@@ -176,13 +176,13 @@ export default function About() {
               }}
             >
               <div
-                className="font-display text-[80px] font-black leading-none tracking-[-1.6px]"
+                className="font-display text-[80px] font-bold leading-none tracking-[-1px]"
                 style={{ color: "#da291c", opacity: 0.12 }}
               >
                 VB
               </div>
             </div>
-            <div className="text-lg font-bold text-white">Vinamra Bhonsle</div>
+            <div className="font-display text-lg font-semibold text-white">Vinamra Bhonsle</div>
             <div className="mt-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
               IT Student &middot; Jaipur, Rajasthan
             </div>
