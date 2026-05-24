@@ -1,7 +1,13 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, Variants, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  Variants,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import CountUp from "./ui/CountUp";
 
 /* ── word-by-word blur reveal ── */
@@ -68,6 +74,7 @@ const headlineSecondary = "Developer & cybersecurity enthusiast.".split(" ");
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const prefersReduced = useReducedMotion();
 
   /* ── Parallax + fade-out on scroll ── */
   const { scrollYProgress } = useScroll({
@@ -75,9 +82,9 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], prefersReduced ? ["0%", "0%"] : ["0%", "30%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], prefersReduced ? ["0%", "0%"] : ["0%", "15%"]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], prefersReduced ? [1, 1] : [1, 0]);
 
   return (
     <section
