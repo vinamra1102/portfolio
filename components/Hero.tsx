@@ -64,13 +64,13 @@ const ctaChild: Variants = {
 };
 
 const stats = [
-  { to: 48, suffix: "+", label: "Projects Built" },
-  { to: 3, suffix: "+", label: "Hackathons" },
-  { to: 1, suffix: "", label: "Internship" },
+  { to: 37, suffix: "", label: "Public Repos" },
+  { to: 8, suffix: "", label: "Live Deployments" },
+  { to: 1, suffix: "", label: "Forensics Internship" },
 ];
 
 const headlinePrimary = "Vinamra Bhonsle".split(" ");
-const headlineSecondary = "Developer & cybersecurity enthusiast.".split(" ");
+const headlineSecondary = "Cybersecurity, forensics & web development.".split(" ");
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -133,7 +133,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.05 }}
           >
-            Developer &amp; Cybersecurity Enthusiast
+            B.Tech IT &middot; Manipal University Jaipur
           </motion.div>
 
           {/* Headline — word-by-word blur reveal */}
@@ -177,8 +177,9 @@ export default function Hero() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            Building secure, robust software with a passion for digital
-            forensics, application security, and full-stack development.
+            B.Tech IT student at Manipal University Jaipur, building secure
+            software &mdash; from vulnerability scanners and forensic tools to
+            full-stack products.
           </motion.p>
 
           {/* CTA Buttons — staggered entry */}

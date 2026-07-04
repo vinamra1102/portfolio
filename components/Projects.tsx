@@ -223,12 +223,26 @@ export default function Projects() {
                 <span className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                   {featured.year}
                 </span>
-                <a
-                  href={`#project-${featured.slug}`}
-                  className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-white transition-transform duration-200 group-hover:translate-x-[6px]"
-                >
-                  View Project <span aria-hidden="true">&rarr;</span>
-                </a>
+                <div className="flex items-center gap-6">
+                  {featured.live && (
+                    <a
+                      href={featured.live}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-white"
+                    >
+                      Live <span aria-hidden="true">&#8599;</span>
+                    </a>
+                  )}
+                  <a
+                    href={featured.repo}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-white transition-transform duration-200 group-hover:translate-x-[6px]"
+                  >
+                    View Code <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -354,15 +368,29 @@ function ProjectCard({
           <span className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             {p.year}
           </span>
-          <a
-            href={`#project-${p.slug}`}
-            className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-white transition-all duration-200"
-            style={{
-              transform: hovered ? "translateX(6px)" : "translateX(0px)",
-            }}
-          >
-            View Project <span aria-hidden="true">&rarr;</span>
-          </a>
+          <div className="flex items-center gap-5">
+            {p.live && (
+              <a
+                href={p.live}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-white"
+              >
+                Live <span aria-hidden="true">&#8599;</span>
+              </a>
+            )}
+            <a
+              href={p.repo}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-white transition-all duration-200"
+              style={{
+                transform: hovered ? "translateX(6px)" : "translateX(0px)",
+              }}
+            >
+              View Code <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
       </div>
     </motion.article>
@@ -430,12 +458,26 @@ function MobileScrollGallery({ projects }: { projects: Project[] }) {
                 <span className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                   {p.year}
                 </span>
-                <a
-                  href={`#project-${p.slug}`}
-                  className="text-[13px] font-bold uppercase tracking-[1.4px] text-white"
-                >
-                  View &rarr;
-                </a>
+                <div className="flex items-center gap-5">
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="text-[13px] font-bold uppercase tracking-[1.4px] text-primary"
+                    >
+                      Live &#8599;
+                    </a>
+                  )}
+                  <a
+                    href={p.repo}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-[13px] font-bold uppercase tracking-[1.4px] text-white"
+                  >
+                    Code &rarr;
+                  </a>
+                </div>
               </div>
             </div>
           </article>

@@ -10,7 +10,7 @@ const infoRows = [
   { lbl: "Currently at", val: "Manipal University Jaipur" },
   { lbl: "Open to", val: "Internships & Full-time roles" },
   { lbl: "Based in", val: "Jaipur, Rajasthan" },
-  { lbl: "Interests", val: "Security & Development" },
+  { lbl: "Focus", val: "Cybersecurity · Forensics · Web" },
 ];
 
 export default function About() {
