@@ -28,8 +28,39 @@ const tickerItems = [
 ];
 
 export default function Skills() {
+  const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+
+  /* ── Ghost watermark parallax — drifts slower than content ── */
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const section = sectionRef.current;
+    if (prefersReduced || !section) return;
+    const mark = section.querySelector(".section-watermark");
+    if (!mark) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        mark,
+        { yPercent: -62 },
+        {
+          yPercent: -38,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   /* ── Step 7: Heading enters from left ── */
   useEffect(() => {
@@ -109,7 +140,11 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="relative bg-canvas-dark py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="skills"
+      className="relative bg-canvas-dark py-24 overflow-hidden"
+    >
       <div className="section-watermark" aria-hidden="true">Skills</div>
       <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <div className="mb-24 grid grid-cols-[40%_60%] gap-12 max-lg:grid-cols-1">

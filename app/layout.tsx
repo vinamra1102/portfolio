@@ -3,6 +3,7 @@ import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import PreloaderProvider from "@/components/Preloader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,8 +58,10 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${oswald.variable}`}>
       <body>
         <SmoothScroll>
-          <Cursor />
-          {children}
+          <PreloaderProvider>
+            <Cursor />
+            {children}
+          </PreloaderProvider>
         </SmoothScroll>
       </body>
     </html>

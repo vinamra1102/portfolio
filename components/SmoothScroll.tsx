@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "@studio-freight/lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({
   children,
@@ -24,6 +28,9 @@ export default function SmoothScroll({
     });
 
     lenisRef.current = lenis;
+
+    /* keep pinned/scrubbed ScrollTriggers in lockstep with Lenis */
+    lenis.on("scroll", ScrollTrigger.update);
 
     function raf(time: number) {
       lenis.raf(time);

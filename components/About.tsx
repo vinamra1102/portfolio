@@ -14,8 +14,39 @@ const infoRows = [
 ];
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLElement>(null);
+
+  /* ── Ghost watermark parallax — drifts slower than content ── */
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const section = sectionRef.current;
+    if (prefersReduced || !section) return;
+    const mark = section.querySelector(".section-watermark");
+    if (!mark) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        mark,
+        { yPercent: -62 },
+        {
+          yPercent: -38,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
 
   /* ── Step 10: Left paragraphs enter from left ── */
   useEffect(() => {
@@ -93,7 +124,11 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="relative bg-canvas-dark py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative bg-canvas-dark py-24 overflow-hidden"
+    >
       <div className="section-watermark" aria-hidden="true">About</div>
       <div className="relative z-[1] mx-auto max-w-7xl px-12 max-md:px-6">
         <div className="grid grid-cols-[55%_45%] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-12">

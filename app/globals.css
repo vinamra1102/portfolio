@@ -212,6 +212,17 @@
   );
 }
 
+/* ── pinned horizontal project gallery ── */
+.h-gallery {
+  overflow: hidden;
+}
+/* reduced motion: no pin, plain horizontal scroll keeps cards reachable */
+@media (prefers-reduced-motion: reduce) {
+  .h-gallery {
+    overflow-x: auto;
+  }
+}
+
 /* ── branded placeholder texture for project cards without screenshots ── */
 .card-texture {
   pointer-events: none;

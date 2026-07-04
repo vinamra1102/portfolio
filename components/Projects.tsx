@@ -116,6 +116,8 @@ export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
@@ -124,6 +126,50 @@ export default function Projects() {
 
   const showFeatured =
     filter === "all" || featured.category === filter;
+
+  /* ── Pinned horizontal gallery (desktop): vertical scroll drives x ── */
+  useEffect(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add(
+      "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const wrap = galleryRef.current;
+        const track = trackRef.current;
+        if (!wrap || !track) return;
+
+        const distance = () =>
+          Math.max(0, track.scrollWidth - window.innerWidth);
+
+        const tween = gsap.to(track, {
+          x: () => -distance(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: wrap,
+            start: "center center",
+            end: () => "+=" + distance(),
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        return () => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+        };
+      }
+    );
+
+    return () => mm.revert();
+  }, []);
+
+  /* pin distance depends on how many cards the active filter shows */
+  useEffect(() => {
+    const t = setTimeout(() => ScrollTrigger.refresh(), 400);
+    return () => clearTimeout(t);
+  }, [visible.length]);
 
   /* ── GSAP clip-path reveal on initial load ── */
   useEffect(() => {
@@ -221,6 +267,36 @@ export default function Projects() {
         );
       }
     }, featuredRef.current!);
+
+    return () => ctx.revert();
+  }, []);
+
+  /* ── Ghost watermark parallax — drifts slower than content ── */
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const section = sectionRef.current;
+    if (prefersReduced || !section) return;
+    const mark = section.querySelector(".section-watermark");
+    if (!mark) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        mark,
+        { yPercent: -62 },
+        {
+          yPercent: -38,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, section);
 
     return () => ctx.revert();
   }, []);
@@ -342,50 +418,64 @@ export default function Projects() {
           </div>
         )}
 
-        <div
-          className="mb-12 flex gap-8 border-b border-hairline"
-          role="tablist"
-          aria-label="Project category filter"
-        >
-          {projectFilters.map((tab) => (
-            <button
-              key={tab.value}
-              role="tab"
-              aria-selected={filter === tab.value}
-              className={clsx(
-                "-mb-px border-b-2 py-4 text-[13px] font-semibold uppercase tracking-[0.65px] transition-colors",
-                filter === tab.value
-                  ? "border-primary text-white"
-                  : "border-transparent text-[#666] hover:text-white"
-              )}
-              onClick={() => setFilter(tab.value)}
-              type="button"
-            >
-              {tab.label}
-            </button>
-          ))}
+      </div>
+
+      {/* ── Pinned horizontal gallery wrapper ── */}
+      <div ref={galleryRef} className="relative z-[1] bg-canvas-dark py-2">
+        <div className="mx-auto max-w-7xl px-12 max-md:px-6">
+          <div
+            className="mb-12 flex gap-8 border-b border-hairline"
+            role="tablist"
+            aria-label="Project category filter"
+          >
+            {projectFilters.map((tab) => (
+              <button
+                key={tab.value}
+                role="tab"
+                aria-selected={filter === tab.value}
+                className={clsx(
+                  "-mb-px border-b-2 py-4 text-[13px] font-semibold uppercase tracking-[0.65px] transition-colors",
+                  filter === tab.value
+                    ? "border-primary text-white"
+                    : "border-transparent text-[#666] hover:text-white"
+                )}
+                onClick={() => setFilter(tab.value)}
+                type="button"
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Desktop grid */}
-        <motion.div
-          ref={gridRef}
-          layout
-          className="grid grid-cols-3 gap-px border border-hairline bg-hairline max-lg:grid-cols-2 max-md:hidden"
-        >
-          <AnimatePresence mode="popLayout">
-            {visible.map((p, i) => (
-              <ProjectCard
-                key={p.slug}
-                project={p}
-                index={i}
-                useClipReveal={!hasAnimated.current && filter === "all"}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* Desktop: full-bleed horizontal track, pinned + scrubbed */}
+        <div className="h-gallery max-md:hidden">
+          <div
+            ref={trackRef}
+            className="flex w-max pb-2 pl-[max(3rem,calc((100vw-1280px)/2+3rem))] pr-12"
+          >
+            <motion.div
+              ref={gridRef}
+              className="flex gap-px border border-hairline bg-hairline"
+            >
+              <AnimatePresence mode="popLayout">
+                {visible.map((p, i) => (
+                  <ProjectCard
+                    key={p.slug}
+                    project={p}
+                    index={i}
+                    useClipReveal={!hasAnimated.current && filter === "all"}
+                  />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        </div>
 
         {/* Mobile horizontal scroll gallery */}
-        <MobileScrollGallery projects={visible} />
+        <div className="mx-auto max-w-7xl px-12 max-md:px-6">
+          <MobileScrollGallery projects={visible} />
+        </div>
       </div>
     </section>
   );
@@ -402,6 +492,36 @@ function ProjectCard({
   useClipReveal: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
+  const tiltRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const tiltEnabled = useRef(false);
+
+  useEffect(() => {
+    tiltEnabled.current =
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
+
+  /* 3D tilt (±6deg) + specular highlight following the cursor */
+  const handleTilt = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (!tiltEnabled.current || !tiltRef.current) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    const ry = (px - 0.5) * 12;
+    const rx = (0.5 - py) * 12;
+    tiltRef.current.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+    if (glowRef.current) {
+      glowRef.current.style.background = `radial-gradient(320px circle at ${(px * 100).toFixed(1)}% ${(py * 100).toFixed(1)}%, rgba(255,255,255,0.08), transparent 65%)`;
+    }
+  }, []);
+
+  const resetTilt = useCallback(() => {
+    if (tiltRef.current) {
+      tiltRef.current.style.transform =
+        "perspective(900px) rotateX(0deg) rotateY(0deg)";
+    }
+  }, []);
 
   return (
     <motion.article
@@ -412,7 +532,7 @@ function ProjectCard({
       animate="animate"
       exit="exit"
       custom={index}
-      className="project-card group flex flex-col transition-all duration-[250ms]"
+      className="project-card group flex w-[420px] flex-shrink-0 flex-col transition-all duration-[250ms] max-lg:w-[380px]"
       style={{
         backgroundColor: hovered ? "#1e1e1e" : "#111111",
         borderLeft: hovered ? "4px solid #dc0000" : "4px solid transparent",
@@ -420,12 +540,31 @@ function ProjectCard({
           ? "0 0 0 1px #303030, -4px 0 20px rgba(220,0,0,0.08)"
           : "none",
         clipPath: useClipReveal ? "inset(100% 0 0 0)" : "inset(0% 0 0 0)",
+        zIndex: hovered ? 5 : "auto",
       }}
       data-category={p.category}
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={() => {
+        setHovered(false);
+        resetTilt();
+      }}
+      onMouseMove={handleTilt}
     >
-      <ProjectVisual project={p} className="h-60" />
+      <div
+        ref={tiltRef}
+        className="relative flex h-full flex-col"
+        style={{
+          transition: "transform 0.18s ease-out",
+          willChange: "transform",
+        }}
+      >
+        <div
+          ref={glowRef}
+          className="pointer-events-none absolute inset-0 z-[2] transition-opacity duration-300"
+          style={{ opacity: hovered ? 1 : 0 }}
+          aria-hidden="true"
+        />
+        <ProjectVisual project={p} className="h-60" />
       <div className="flex flex-1 flex-col p-6">
         <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
           {p.num}
@@ -475,6 +614,7 @@ function ProjectCard({
               View Code <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
+        </div>
         </div>
       </div>
     </motion.article>

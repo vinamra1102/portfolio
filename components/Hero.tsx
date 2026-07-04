@@ -10,6 +10,8 @@ import {
 } from "framer-motion";
 import CountUp from "./ui/CountUp";
 import Magnetic from "./ui/Magnetic";
+import HeroParticles from "./HeroParticles";
+import { usePreloaderReady } from "./Preloader";
 
 /* ── word-by-word blur reveal ── */
 const wordContainer: Variants = {
@@ -76,6 +78,8 @@ const headlineSecondary = "Cybersecurity, forensics & web development.".split(" 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
+  /* entrance choreography waits for the preloader wipe */
+  const ready = usePreloaderReady();
 
   /* ── Parallax + fade-out on scroll ── */
   const { scrollYProgress } = useScroll({
@@ -115,6 +119,7 @@ export default function Hero() {
         <div className="hero-speedlines" />
         <div className="hero-noise absolute inset-0" />
         <div className="hero-scrim absolute inset-0" />
+        <HeroParticles />
       </motion.div>
 
       {/* Red ambient glow — bottom left */}
@@ -144,7 +149,7 @@ export default function Hero() {
           <motion.div
             className="mb-6 border-l-2 border-primary pl-4 text-[11px] font-semibold uppercase tracking-[1.1px] text-muted"
             initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.5, delay: 0.05 }}
           >
             B.Tech IT &middot; Manipal University Jaipur
@@ -155,7 +160,7 @@ export default function Hero() {
             className="font-display text-[clamp(52px,8vw,96px)] font-bold uppercase leading-[0.9] tracking-[-1px] text-white"
             variants={wordContainer}
             initial="hidden"
-            animate="visible"
+            animate={ready ? "visible" : "hidden"}
           >
             <span className="block overflow-hidden">
               {headlinePrimary.map((w, i) => (
@@ -184,7 +189,7 @@ export default function Hero() {
           <motion.p
             className="mt-6 max-w-[480px] text-lg font-normal leading-relaxed text-body max-md:text-base"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{
               duration: 0.7,
               delay: 0.5,
@@ -201,7 +206,7 @@ export default function Hero() {
             className="mt-12 flex flex-wrap gap-4"
             variants={ctaContainer}
             initial="hidden"
-            animate="visible"
+            animate={ready ? "visible" : "hidden"}
           >
             <Magnetic>
               <motion.a
@@ -227,7 +232,7 @@ export default function Hero() {
           <motion.div
             className="mt-24 grid w-full grid-cols-3 border-t border-hairline max-md:grid-cols-1"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{
               duration: 0.7,
               delay: 1.0,
