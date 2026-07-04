@@ -9,9 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        /* var-backed so the accent can shift subtly per section on scroll */
         primary: {
-          DEFAULT: "#dc0000",
-          active: "#b00000",
+          DEFAULT: "var(--red)",
+          active: "var(--red-active)",
         },
         accent: "#FFD700",
         body: "#969696",

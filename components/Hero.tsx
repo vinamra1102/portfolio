@@ -185,21 +185,14 @@ export default function Hero() {
             </motion.span>
           </motion.h1>
 
-          {/* Description */}
-          <motion.p
-            className="mt-6 max-w-[480px] text-lg font-normal leading-relaxed text-body max-md:text-base"
-            initial={{ opacity: 0, y: 20 }}
-            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.5,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
+          {/* Description — deliberately static: it's the mobile LCP element,
+              so it must paint from server HTML before hydration. The
+              preloader overlay covers it on first visit anyway. */}
+          <p className="mt-6 max-w-[480px] text-lg font-normal leading-relaxed text-body max-md:text-base">
             B.Tech IT student at Manipal University Jaipur, building secure
             software &mdash; from vulnerability scanners and forensic tools to
             full-stack products.
-          </motion.p>
+          </p>
 
           {/* CTA Buttons — staggered entry */}
           <motion.div
@@ -232,7 +225,7 @@ export default function Hero() {
           <motion.div
             className="mt-24 grid w-full grid-cols-3 border-t border-hairline max-md:grid-cols-1"
             initial={{ opacity: 0, y: 20 }}
-            animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.7,
               delay: 1.0,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePreloaderReady } from "./Preloader";
 
 interface Streak {
   x: number;
@@ -18,8 +19,11 @@ interface Streak {
  */
 export default function HeroParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  /* don't compete for the main thread while the page loads in */
+  const ready = usePreloaderReady();
 
   useEffect(() => {
+    if (!ready) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -102,7 +106,7 @@ export default function HeroParticles() {
       io.disconnect();
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [ready]);
 
   return (
     <canvas

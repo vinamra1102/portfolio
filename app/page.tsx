@@ -1,15 +1,21 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
+import ScrollAmbience from "@/components/ScrollAmbience";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+
+/* Below-fold sections are code-split so hydration happens in smaller
+   tasks after the hero is interactive (HTML is still server-rendered). */
+const Projects = dynamic(() => import("@/components/Projects"));
+const Skills = dynamic(() => import("@/components/Skills"));
+const About = dynamic(() => import("@/components/About"));
+const Contact = dynamic(() => import("@/components/Contact"));
 
 export default function HomePage() {
   return (
     <>
       <Navbar />
+      <ScrollAmbience />
       <main>
         <Hero />
         <div className="section-divider" />

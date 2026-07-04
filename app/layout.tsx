@@ -14,7 +14,7 @@ const inter = Inter({
 
 const oswald = Oswald({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "600", "700"],
   variable: "--font-display",
   display: "swap",
 });

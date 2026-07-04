@@ -256,7 +256,9 @@
   position: absolute;
   inset: 0;
   background: var(--canvas-deep, #111111);
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  /* --divider-rise is scrubbed 45% → 0% on scroll so the diagonal
+     sharpens into place as the transition enters the viewport */
+  clip-path: polygon(0 100%, 100% var(--divider-rise, 0%), 100% 100%);
 }
 .section-divider::after {
   content: "";
@@ -275,7 +277,7 @@
 
 /* Inverted diagonal for alternating sections */
 .section-divider--inv::before {
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 var(--divider-rise, 0%), 100% 100%, 0 100%);
 }
 
 /* ── metallic shine sweep for primary red buttons ── */

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import Magnetic from "./ui/Magnetic";
+import SoundToggle from "./SoundToggle";
 
 const links = [
   { id: "work", label: "Work" },
@@ -95,14 +96,17 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <Magnetic className="max-md:hidden">
-          <a
-            href="#contact"
-            className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
-          >
-            Hire Me
-          </a>
-        </Magnetic>
+        <div className="flex items-center gap-3 max-md:hidden">
+          <SoundToggle />
+          <Magnetic>
+            <a
+              href="#contact"
+              className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+            >
+              Hire Me
+            </a>
+          </Magnetic>
+        </div>
 
         <button
           type="button"
