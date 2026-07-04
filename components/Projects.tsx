@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
@@ -37,6 +38,78 @@ const cardFilterVariants = {
 
 const featured = projects[0]; // #01
 const rest = projects.slice(1);
+
+/* ── card visual: real screenshot, or branded gradient placeholder ── */
+function ProjectVisual({
+  project: p,
+  className,
+  ghostClassName = "text-5xl",
+  sizes = "(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw",
+  watermark,
+}: {
+  project: Project;
+  className?: string;
+  ghostClassName?: string;
+  sizes?: string;
+  watermark?: string;
+}) {
+  return (
+    <div data-visual className={clsx("relative overflow-hidden", className)}>
+      <div data-reveal-scale className="absolute inset-0">
+        {p.image ? (
+          <>
+            <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105">
+              <Image
+                src={p.image}
+                alt={`${p.name} interface screenshot`}
+                fill
+                sizes={sizes}
+                className="object-cover object-top"
+              />
+            </div>
+            {/* scrim keeps screenshots sitting inside the dark card language */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(17,17,17,0.15) 0%, rgba(17,17,17,0.05) 45%, rgba(17,17,17,0.45) 100%)",
+              }}
+              aria-hidden="true"
+            />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ background: p.gradient }}
+          >
+            <div className="card-texture absolute inset-0" aria-hidden="true" />
+            <div
+              className={clsx(
+                "px-4 text-center font-display font-bold uppercase tracking-[-1px] text-white opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14]",
+                ghostClassName
+              )}
+              aria-hidden="true"
+            >
+              {p.name}
+            </div>
+          </div>
+        )}
+      </div>
+      {watermark && (
+        <div
+          className="pointer-events-none absolute inset-0 flex select-none items-center justify-center font-display font-bold leading-none tracking-[-4px]"
+          style={{
+            fontSize: "clamp(120px, 14vw, 200px)",
+            color: "rgba(255,255,255,0.06)",
+          }}
+          aria-hidden="true"
+        >
+          {watermark}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Projects() {
   const [filter, setFilter] = useState<FilterValue>("all");
@@ -82,6 +155,23 @@ export default function Projects() {
           },
         }
       );
+
+      /* card imagery settles from an overscaled state as the clip opens */
+      gsap.fromTo(
+        gridRef.current!.querySelectorAll("[data-reveal-scale]"),
+        { scale: 1.15 },
+        {
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out",
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
     }, gridRef.current);
 
     return () => ctx.revert();
@@ -110,6 +200,26 @@ export default function Projects() {
           },
         }
       );
+
+      /* screenshot wipes in left-to-right behind the card entrance */
+      const visual = featuredRef.current!.querySelector("[data-visual]");
+      if (visual) {
+        gsap.fromTo(
+          visual,
+          { clipPath: "inset(0 100% 0 0)" },
+          {
+            clipPath: "inset(0 0% 0 0)",
+            duration: 1,
+            delay: 0.15,
+            ease: "power3.inOut",
+            scrollTrigger: {
+              trigger: featuredRef.current,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
     }, featuredRef.current!);
 
     return () => ctx.revert();
@@ -174,29 +284,12 @@ export default function Projects() {
             }}
           >
             {/* Left — visual */}
-            <div
-              className="relative flex min-h-[320px] items-center justify-center overflow-hidden max-lg:min-h-[240px]"
-              style={{ background: featured.gradient }}
-            >
-              {/* Giant watermark number */}
-              <div
-                className="pointer-events-none select-none font-display font-bold leading-none tracking-[-4px]"
-                style={{
-                  fontSize: "clamp(120px, 14vw, 200px)",
-                  color: "rgba(255,255,255,0.04)",
-                }}
-                aria-hidden="true"
-              >
-                {featured.num}
-              </div>
-              {/* Name ghost */}
-              <div
-                className="absolute inset-0 flex items-center justify-center font-display text-5xl font-bold uppercase tracking-[-1px] text-white opacity-[0.06] transition-opacity duration-300 group-hover:opacity-[0.14]"
-                aria-hidden="true"
-              >
-                {featured.name}
-              </div>
-            </div>
+            <ProjectVisual
+              project={featured}
+              className="min-h-[320px] max-lg:min-h-[240px]"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              watermark={featured.num}
+            />
 
             {/* Right — info */}
             <div className="flex flex-col justify-center p-10 max-lg:p-8">
@@ -318,7 +411,7 @@ function ProjectCard({
       animate="animate"
       exit="exit"
       custom={index}
-      className="project-card flex flex-col transition-all duration-[250ms]"
+      className="project-card group flex flex-col transition-all duration-[250ms]"
       style={{
         backgroundColor: hovered ? "#1e1e1e" : "#111111",
         borderLeft: hovered ? "4px solid #da291c" : "4px solid transparent",
@@ -331,17 +424,7 @@ function ProjectCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div
-        className="relative flex h-60 items-center justify-center overflow-hidden"
-        style={{ background: p.gradient }}
-      >
-        <div
-          className="font-display text-5xl font-bold uppercase tracking-[-1px] text-white transition-opacity duration-300"
-          style={{ opacity: hovered ? 0.14 : 0.06 }}
-        >
-          {p.name}
-        </div>
-      </div>
+      <ProjectVisual project={p} className="h-60" />
       <div className="flex flex-1 flex-col p-6">
         <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
           {p.num}
@@ -426,16 +509,14 @@ function MobileScrollGallery({ projects }: { projects: Project[] }) {
         {projects.map((p) => (
           <article
             key={p.slug}
-            className="w-[85vw] flex-shrink-0 snap-start border border-hairline bg-[#111111]"
+            className="group w-[85vw] flex-shrink-0 snap-start border border-hairline bg-[#111111]"
           >
-            <div
-              className="relative flex h-48 items-center justify-center overflow-hidden"
-              style={{ background: p.gradient }}
-            >
-              <div className="font-display text-4xl font-bold uppercase tracking-[-1px] text-white opacity-[0.06]">
-                {p.name}
-              </div>
-            </div>
+            <ProjectVisual
+              project={p}
+              className="h-48"
+              ghostClassName="text-4xl"
+              sizes="85vw"
+            />
             <div className="flex flex-col p-5">
               <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                 {p.num}

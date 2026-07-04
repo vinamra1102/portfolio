@@ -83,6 +83,7 @@ export default function Hero() {
   });
 
   const bgY = useTransform(scrollYProgress, [0, 1], prefersReduced ? ["0%", "0%"] : ["0%", "30%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], prefersReduced ? [1, 1] : [1.05, 1]);
   const contentY = useTransform(scrollYProgress, [0, 1], prefersReduced ? ["0%", "0%"] : ["0%", "15%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], prefersReduced ? [1, 1] : [1, 0]);
 
@@ -92,16 +93,28 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen overflow-hidden"
     >
-      {/* Parallax background layer */}
+      {/*
+        Cinematic backdrop — parallax + Ken Burns scale (1.05 → 1) on scroll.
+        TODO(hero-image): to swap in a real photo, drop it at
+        /public/hero-bg.avif — 2560×1440 (16:9), AVIF or WebP, ≤300KB,
+        dark/moody with most luminance below ~20% (abstract tech, dark
+        architecture, or carbon-fiber texture; no branded imagery), focal
+        interest upper-right so the left-aligned headline stays clear.
+        Render it as the first child of this container via
+        <Image src="/hero-bg.avif" alt="" fill priority className="object-cover" />
+        and keep the layers below as overlays (drop .hero-mesh, keep scrim).
+      */}
       <motion.div
-        className="absolute inset-0"
-        style={{
-          y: bgY,
-          background:
-            "radial-gradient(ellipse at 60% 50%, #222 0%, #111 100%)",
-        }}
+        className="absolute inset-0 overflow-hidden"
+        style={{ y: bgY, scale: bgScale }}
         aria-hidden="true"
-      />
+      >
+        <div className="hero-mesh absolute inset-0" />
+        <div className="hero-carbon absolute inset-0" />
+        <div className="hero-speedlines" />
+        <div className="hero-noise absolute inset-0" />
+        <div className="hero-scrim absolute inset-0" />
+      </motion.div>
 
       {/* Red ambient glow — bottom left */}
       <motion.div

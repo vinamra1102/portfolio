@@ -11,6 +11,8 @@ export interface Project {
   gradient: string;
   repo: string;
   live?: string;
+  /** Screenshot under /public — cards without one render a branded placeholder. */
+  image?: string;
 }
 
 export const projects: Project[] = [
@@ -25,6 +27,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #1a1a2e, #16213e)",
     repo: "https://github.com/vinamra1102/CertWatch-certificate_checker-Frontend-",
     live: "https://cert-watch-certificate-checker-fron.vercel.app",
+    image: "/projects/certwatch.png",
   },
   {
     num: "02",
@@ -70,6 +73,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #140f26, #221a3a)",
     repo: "https://github.com/vinamra1102/orbit",
     live: "https://orbit-amber-six.vercel.app/",
+    image: "/projects/orbit.png",
   },
   {
     num: "06",
@@ -93,6 +97,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #0a1f1a, #14302a)",
     repo: "https://github.com/vinamra1102/mintSlot",
     live: "https://mintslot-weld.vercel.app/",
+    image: "/projects/mintslot.png",
   },
 ];
 

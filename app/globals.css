@@ -142,6 +142,94 @@
   will-change: transform;
 }
 
+/* ── cinematic hero backdrop layers ── */
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 18%, rgba(40, 44, 58, 0.85) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 85%, rgba(58, 18, 14, 0.55) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 45% at 88% 72%, rgba(28, 28, 34, 0.9) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 50%, #1c1c20 0%, #101012 100%);
+}
+
+/* carbon-fiber weave — barely-there diagonal texture */
+.hero-carbon {
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.012) 0 2px,
+      transparent 2px 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0, 0, 0, 0.14) 0 2px,
+      transparent 2px 6px
+    );
+}
+
+/* subtle animated speed-lines drifting across the hero */
+.hero-speedlines {
+  position: absolute;
+  inset: -20%;
+  background-image: repeating-linear-gradient(
+    100deg,
+    transparent 0px,
+    transparent 170px,
+    rgba(255, 255, 255, 0.028) 170px,
+    rgba(255, 255, 255, 0.028) 171px,
+    transparent 171px,
+    transparent 352px,
+    rgba(218, 41, 28, 0.045) 352px,
+    rgba(218, 41, 28, 0.045) 354px
+  );
+  animation: speedline-drift 26s linear infinite;
+  will-change: transform;
+}
+@keyframes speedline-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* one full gradient period — loops seamlessly */
+    transform: translateX(-354px);
+  }
+}
+
+.hero-noise {
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* dark scrim for text legibility over the backdrop */
+.hero-scrim {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 17, 17, 0.25) 0%,
+    rgba(17, 17, 17, 0.05) 40%,
+    rgba(20, 20, 20, 0.55) 78%,
+    #111111 100%
+  );
+}
+
+/* ── branded placeholder texture for project cards without screenshots ── */
+.card-texture {
+  pointer-events: none;
+  opacity: 0.6;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0 1px,
+      transparent 1px 32px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 0 1px,
+      transparent 1px 32px
+    ),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: auto, auto, 256px 256px;
+}
+
 /* ── diagonal section divider ── */
 .section-divider {
   position: relative;
