@@ -5,6 +5,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { skillCategories } from "@/lib/skills";
+import Magnetic from "./ui/Magnetic";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,8 +118,9 @@ export default function Skills() {
             <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
               Expertise
             </div>
-            <h2 className="mt-4 font-display text-[40px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
-              Built for security.
+            <h2 className="mt-4 font-display text-[40px] uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
+              <span className="font-light">Built for</span>{" "}
+              <span className="font-bold">security.</span>
             </h2>
             <p className="mt-6 max-w-[380px] text-sm leading-[1.7] text-body">
               A focused toolkit spanning full-stack development, cybersecurity,
@@ -130,12 +132,14 @@ export default function Skills() {
               evidence from SQLite databases, each tool in the stack has been
               battle-tested.
             </p>
-            <a
-              href="/resume.pdf"
-              className="btn-red mt-8 inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
-            >
-              Download CV
-            </a>
+            <Magnetic className="mt-8">
+              <a
+                href="/resume.pdf"
+                className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+              >
+                Download CV
+              </a>
+            </Magnetic>
           </div>
 
           {/* Right column — skill grid */}
@@ -168,7 +172,7 @@ export default function Skills() {
                         style={{
                           left: `${Math.max(0, Math.min(100, s.pct) - 3)}%`,
                           transform: "scaleX(0)",
-                          boxShadow: "0 0 6px rgba(218,41,28,0.5)",
+                          boxShadow: "0 0 6px rgba(220,0,0,0.5)",
                         }}
                       />
                     </div>
@@ -197,15 +201,18 @@ export default function Skills() {
 
       <div className="livery-band px-16 py-12 max-lg:px-8 max-md:px-6">
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-8 max-md:hidden">
-          <div className="font-display text-[48px] font-bold uppercase leading-[0.95] tracking-[1px] text-white max-lg:text-[32px]">
-            Available for internships &amp; full-time roles
+          <div className="font-display text-[48px] uppercase leading-[0.95] tracking-[1px] text-white max-lg:text-[32px]">
+            <span className="font-light">Available for</span>{" "}
+            <span className="font-bold">internships &amp; full-time roles</span>
           </div>
-          <a
-            href="#contact"
-            className="btn-outline-shine inline-flex h-12 items-center justify-center whitespace-nowrap border border-white/60 bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-all duration-200 hover:border-white hover:bg-white/[0.08]"
-          >
-            Get In Touch &rarr;
-          </a>
+          <Magnetic>
+            <a
+              href="#contact"
+              className="btn-outline-shine inline-flex h-12 items-center justify-center whitespace-nowrap border border-white/60 bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-all duration-200 hover:border-white hover:bg-white/[0.08]"
+            >
+              Get In Touch &rarr;
+            </a>
+          </Magnetic>
         </div>
 
         <div className="relative z-10 hidden max-md:block">

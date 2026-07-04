@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --red: #da291c;
-  --red-active: #b01e0a;
-  --red-glow: rgba(218, 41, 28, 0.12);
-  --red-glow-strong: rgba(218, 41, 28, 0.2);
+  --red: #dc0000;
+  --red-active: #b00000;
+  --red-glow: rgba(220, 0, 0, 0.12);
+  --red-glow-strong: rgba(220, 0, 0, 0.2);
+  --yellow: #ffd700;
   --canvas: #181818;
   --canvas-deep: #111111;
   --canvas-elevated: #303030;
@@ -118,7 +119,7 @@
   left: 0;
   width: 6px;
   height: 6px;
-  background: #da291c;
+  background: #dc0000;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 9999;
@@ -132,7 +133,7 @@
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(218, 41, 28, 0.35);
+  border: 1.5px solid rgba(220, 0, 0, 0.35);
   border-radius: 9999px;
   pointer-events: none;
   z-index: 9998;
@@ -178,8 +179,8 @@
     rgba(255, 255, 255, 0.028) 171px,
     transparent 171px,
     transparent 352px,
-    rgba(218, 41, 28, 0.045) 352px,
-    rgba(218, 41, 28, 0.045) 354px
+    rgba(220, 0, 0, 0.045) 352px,
+    rgba(220, 0, 0, 0.045) 354px
   );
   animation: speedline-drift 26s linear infinite;
   will-change: transform;
@@ -256,7 +257,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(218, 41, 28, 0.15) 50%,
+    rgba(220, 0, 0, 0.15) 50%,
     transparent 100%
   );
 }
@@ -321,7 +322,9 @@
 /* ── livery band gradient + noise ── */
 .livery-band {
   position: relative;
-  background: linear-gradient(135deg, #a00c01 0%, #da291c 50%, #c4220f 100%);
+  background: linear-gradient(135deg, #a00000 0%, #dc0000 50%, #c40000 100%);
+  /* Modena Yellow pinstripe */
+  border-top: 2px solid rgba(255, 215, 0, 0.85);
 }
 .livery-band::after {
   content: "";
@@ -362,8 +365,8 @@
   border-top: 2px solid transparent;
 }
 [data-skill-card]:hover {
-  border-color: #3a1a18;
-  border-top-color: rgba(218, 41, 28, 0.4);
+  border-color: #3a0c0a;
+  border-top-color: rgba(220, 0, 0, 0.4);
 }
 
 /* ── about info row hover ── */
@@ -371,7 +374,7 @@
   transition: background-color 0.2s ease;
 }
 [data-info-row]:hover {
-  background-color: rgba(218, 41, 28, 0.04);
+  background-color: rgba(220, 0, 0, 0.04);
 }
 
 /* ── submit button metallic shine sweep (step 15) ── */

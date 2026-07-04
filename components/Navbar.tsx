@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import Magnetic from "./ui/Magnetic";
 
 const links = [
   { id: "work", label: "Work" },
@@ -65,7 +66,7 @@ export default function Navbar() {
       className={clsx(
         "fixed inset-x-0 top-0 z-[100] h-16 border-b transition-all duration-300",
         scrolled
-          ? "border-[rgba(218,41,28,0.2)] bg-[rgba(24,24,24,0.95)] backdrop-blur-[12px]"
+          ? "border-[rgba(220,0,0,0.2)] bg-[rgba(24,24,24,0.95)] backdrop-blur-[12px]"
           : "border-transparent bg-[rgba(24,24,24,0)]"
       )}
     >
@@ -94,12 +95,14 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a
-          href="#contact"
-          className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active max-md:hidden"
-        >
-          Hire Me
-        </a>
+        <Magnetic className="max-md:hidden">
+          <a
+            href="#contact"
+            className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+          >
+            Hire Me
+          </a>
+        </Magnetic>
 
         <button
           type="button"

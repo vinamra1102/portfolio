@@ -123,8 +123,9 @@ export default function Contact() {
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             Let&rsquo;s build something
           </div>
-          <h2 className="mt-4 font-display text-[44px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-on-light md:text-[56px] lg:text-[80px]">
-            Ready when you are.
+          <h2 className="mt-4 font-display text-[44px] uppercase leading-[0.95] tracking-[-0.5px] text-on-light md:text-[56px] lg:text-[80px]">
+            <span className="font-light">Ready when</span>{" "}
+            <span className="font-bold">you are.</span>
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
             Tell me about the problem you&rsquo;re solving. I read every message
@@ -144,7 +145,7 @@ export default function Contact() {
               placeholder="Name"
               aria-invalid={!!errors.name}
               className={clsx(
-                "contact-input h-12 w-full border bg-surface-soft px-4 text-sm text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(218,41,28,0.1)] focus:outline-none",
+                "contact-input h-12 w-full border bg-surface-soft px-4 text-sm text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(220,0,0,0.1)] focus:outline-none",
                 errors.name
                   ? "border-primary bg-[#fff5f3]"
                   : "border-hairline-light"
@@ -167,7 +168,7 @@ export default function Contact() {
               placeholder="Email"
               aria-invalid={!!errors.email}
               className={clsx(
-                "contact-input h-12 w-full border bg-surface-soft px-4 text-sm text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(218,41,28,0.1)] focus:outline-none",
+                "contact-input h-12 w-full border bg-surface-soft px-4 text-sm text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(220,0,0,0.1)] focus:outline-none",
                 errors.email
                   ? "border-primary bg-[#fff5f3]"
                   : "border-hairline-light"
@@ -193,7 +194,7 @@ export default function Contact() {
               rows={4}
               aria-invalid={!!errors.message}
               className={clsx(
-                "contact-input min-h-[132px] w-full resize-y border bg-surface-soft px-4 py-[14px] text-sm leading-relaxed text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(218,41,28,0.1)] focus:outline-none",
+                "contact-input min-h-[132px] w-full resize-y border bg-surface-soft px-4 py-[14px] text-sm leading-relaxed text-on-light transition-all duration-200 focus:border-primary focus:shadow-[0_0_0_3px_rgba(220,0,0,0.1)] focus:outline-none",
                 errors.message
                   ? "border-primary bg-[#fff5f3]"
                   : "border-hairline-light"

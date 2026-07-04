@@ -9,6 +9,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import CountUp from "./ui/CountUp";
+import Magnetic from "./ui/Magnetic";
 
 /* ── word-by-word blur reveal ── */
 const wordContainer: Variants = {
@@ -122,7 +123,7 @@ export default function Hero() {
         style={{
           y: bgY,
           background:
-            "radial-gradient(ellipse at 0% 100%, rgba(218,41,28,0.08) 0%, transparent 70%)",
+            "radial-gradient(ellipse at 0% 100%, rgba(220,0,0,0.08) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -168,7 +169,7 @@ export default function Hero() {
               ))}
             </span>
             <motion.span
-              className="mt-4 block overflow-hidden text-[clamp(20px,4.5vw,56px)] font-normal leading-none tracking-[-0.5px] text-body"
+              className="mt-4 block overflow-hidden text-[clamp(20px,4.5vw,56px)] font-light leading-none tracking-[-0.5px] text-body"
               variants={subtitleVariant}
             >
               {headlineSecondary.map((w, i) => (
@@ -202,20 +203,24 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
           >
-            <motion.a
-              href="#work"
-              className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
-              variants={ctaChild}
-            >
-              View My Work
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
-              variants={ctaChild}
-            >
-              Get In Touch
-            </motion.a>
+            <Magnetic>
+              <motion.a
+                href="#work"
+                className="btn-red inline-flex h-12 items-center justify-center whitespace-nowrap bg-primary px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-primary-active"
+                variants={ctaChild}
+              >
+                View My Work
+              </motion.a>
+            </Magnetic>
+            <Magnetic>
+              <motion.a
+                href="#contact"
+                className="inline-flex h-12 items-center justify-center whitespace-nowrap border border-white bg-transparent px-8 text-sm font-bold uppercase leading-none tracking-[1.4px] text-white transition-colors hover:bg-white/5"
+                variants={ctaChild}
+              >
+                Get In Touch
+              </motion.a>
+            </Magnetic>
           </motion.div>
 
           {/* ── Stat counters with CountUp ── */}

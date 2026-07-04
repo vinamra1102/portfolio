@@ -103,8 +103,9 @@ export default function About() {
               <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
                 About
               </div>
-              <h2 className="mt-4 font-display text-[44px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px] lg:text-[80px]">
-                Engineered for security.
+              <h2 className="mt-4 font-display text-[44px] uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px] lg:text-[80px]">
+                <span className="font-light">Engineered for</span>{" "}
+                <span className="font-bold">security.</span>
               </h2>
             </div>
 
@@ -173,12 +174,12 @@ export default function About() {
               className="mb-6 flex aspect-[4/3] w-full items-center justify-center"
               style={{
                 background:
-                  "radial-gradient(ellipse at center, rgba(218,41,28,0.06) 0%, #1e1e1e 60%)",
+                  "radial-gradient(ellipse at center, rgba(220,0,0,0.06) 0%, #1e1e1e 60%)",
               }}
             >
               <div
                 className="font-display text-[80px] font-bold leading-none tracking-[-1px]"
-                style={{ color: "#da291c", opacity: 0.12 }}
+                style={{ color: "#dc0000", opacity: 0.12 }}
               >
                 VB
               </div>

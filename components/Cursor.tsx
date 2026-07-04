@@ -67,8 +67,8 @@ export default function Cursor() {
         ring.style.width = isCta ? "52px" : "36px";
         ring.style.height = isCta ? "52px" : "36px";
         ring.style.borderColor = isCta
-          ? "rgba(218, 41, 28, 0.6)"
-          : "rgba(218, 41, 28, 0.35)";
+          ? "rgba(220, 0, 0, 0.6)"
+          : "rgba(220, 0, 0, 0.35)";
         dot.style.width = isCta ? "8px" : "6px";
         dot.style.height = isCta ? "8px" : "6px";
       }
@@ -79,7 +79,7 @@ export default function Cursor() {
         hovering.current = false;
         ring.style.width = "36px";
         ring.style.height = "36px";
-        ring.style.borderColor = "rgba(218, 41, 28, 0.35)";
+        ring.style.borderColor = "rgba(220, 0, 0, 0.35)";
         dot.style.width = "6px";
         dot.style.height = "6px";
       }

@@ -267,8 +267,9 @@ export default function Projects() {
           <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
             Selected Work
           </div>
-          <h2 className="font-display text-[40px] font-semibold uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
-            Projects that ship.
+          <h2 className="font-display text-[40px] uppercase leading-[0.95] tracking-[-0.5px] text-white md:text-[56px]">
+            <span className="font-light">Projects that</span>{" "}
+            <span className="font-bold">ship.</span>
           </h2>
         </header>
 
@@ -278,8 +279,8 @@ export default function Projects() {
             ref={featuredRef}
             className="group mb-12 grid grid-cols-[1fr_1fr] overflow-hidden border border-hairline bg-[#111111] transition-all duration-300 hover:bg-[#1a1a1a] max-lg:grid-cols-1"
             style={{
-              borderLeft: "4px solid #da291c",
-              boxShadow: "-8px 0 32px rgba(218,41,28,0.12)",
+              borderLeft: "4px solid #dc0000",
+              boxShadow: "-8px 0 32px rgba(220,0,0,0.12)",
               opacity: 0,
             }}
           >
@@ -293,7 +294,7 @@ export default function Projects() {
 
             {/* Right — info */}
             <div className="flex flex-col justify-center p-10 max-lg:p-8">
-              <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-muted">
+              <div className="text-[11px] font-semibold uppercase tracking-[1.1px] text-accent">
                 Featured Project &middot; {featured.num}
               </div>
               <h3 className="mt-3 font-display text-[28px] font-semibold tracking-[0.2px] text-white md:text-[32px]">
@@ -306,7 +307,7 @@ export default function Projects() {
                 {featured.tech.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full bg-[#3a1a18] px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-primary"
+                    className="rounded-full bg-[rgba(255,215,0,0.08)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] text-accent"
                   >
                     {t}
                   </span>
@@ -322,7 +323,7 @@ export default function Projects() {
                       href={featured.live}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-white"
+                      className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-accent"
                     >
                       Live <span aria-hidden="true">&#8599;</span>
                     </a>
@@ -414,9 +415,9 @@ function ProjectCard({
       className="project-card group flex flex-col transition-all duration-[250ms]"
       style={{
         backgroundColor: hovered ? "#1e1e1e" : "#111111",
-        borderLeft: hovered ? "4px solid #da291c" : "4px solid transparent",
+        borderLeft: hovered ? "4px solid #dc0000" : "4px solid transparent",
         boxShadow: hovered
-          ? "0 0 0 1px #303030, -4px 0 20px rgba(218,41,28,0.08)"
+          ? "0 0 0 1px #303030, -4px 0 20px rgba(220,0,0,0.08)"
           : "none",
         clipPath: useClipReveal ? "inset(100% 0 0 0)" : "inset(0% 0 0 0)",
       }}
@@ -439,8 +440,8 @@ function ProjectCard({
               key={t}
               className="rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[1.1px] transition-colors duration-200"
               style={{
-                backgroundColor: hovered ? "#3a1a18" : "#303030",
-                color: hovered ? "#da291c" : "#b8b8b8",
+                backgroundColor: hovered ? "#3a0c0a" : "#303030",
+                color: hovered ? "#dc0000" : "#b8b8b8",
               }}
             >
               {t}
@@ -457,7 +458,7 @@ function ProjectCard({
                 href={p.live}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-white"
+                className="inline-flex items-center gap-[6px] text-[13px] font-bold uppercase tracking-[1.4px] text-primary transition-colors duration-200 hover:text-accent"
               >
                 Live <span aria-hidden="true">&#8599;</span>
               </a>

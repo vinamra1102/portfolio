@@ -83,7 +83,7 @@ export default function Footer() {
             Built with precision{" "}
             <span
               className="inline-block h-[6px] w-[6px] rounded-full bg-primary"
-              style={{ boxShadow: "0 0 8px rgba(218,41,28,0.6)" }}
+              style={{ boxShadow: "0 0 8px rgba(220,0,0,0.6)" }}
               aria-hidden="true"
             />
           </div>

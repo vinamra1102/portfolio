@@ -10,9 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#da291c",
-          active: "#b01e0a",
+          DEFAULT: "#dc0000",
+          active: "#b00000",
         },
+        accent: "#FFD700",
         body: "#969696",
         muted: "#666666",
         hairline: {
