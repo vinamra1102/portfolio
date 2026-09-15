@@ -36,6 +36,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Vinamra Bhonsle" }],
   creator: "Vinamra Bhonsle",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
