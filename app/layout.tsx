@@ -4,6 +4,7 @@ import "./globals.css";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import PreloaderProvider from "@/components/Preloader";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({
             {children}
           </PreloaderProvider>
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
