@@ -110,6 +110,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #16181d)",
     repo: "https://github.com/vinamra1102/portfolio",
     live: "https://vinamrabhonsle.online",
+    image: "/projects/portfolio.png",
   },
   {
     num: "09",
@@ -122,6 +123,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #101c26)",
     repo: "https://github.com/vinamra1102/atomity-challenge",
     live: "https://atomity-challenge-eight.vercel.app",
+    image: "/projects/atomity-challenge.png",
   },
   {
     num: "10",
@@ -134,6 +136,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #171226)",
     repo: "https://github.com/vinamra1102/Convene",
     live: "https://convene-peach.vercel.app",
+    image: "/projects/convene.png",
   },
   {
     num: "11",
@@ -146,6 +149,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #0a1f22)",
     repo: "https://github.com/vinamra1102/FormForge",
     live: "https://formforge-three-lake.vercel.app",
+    image: "/projects/formforge.png",
   },
   {
     num: "12",
@@ -158,6 +162,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #0d2018)",
     repo: "https://github.com/vinamra1102/storeiq",
     live: "https://storeiq-lac.vercel.app",
+    image: "/projects/storeiq.png",
   },
   {
     num: "13",
@@ -170,6 +175,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #101430)",
     repo: "https://github.com/vinamra1102/Calculator.net-redesigned-",
     live: "https://calculator-net-redesigned.vercel.app",
+    image: "/projects/calculator-net-redesign.png",
   },
   {
     num: "14",
@@ -182,6 +188,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #240d18)",
     repo: "https://github.com/vinamra1102/Nudge-Landing-Page",
     live: "https://nudge-landing-six.vercel.app",
+    image: "/projects/nudge.png",
   },
   {
     num: "15",
@@ -194,6 +201,7 @@ export const projects: Project[] = [
     gradient: "linear-gradient(135deg, #090909, #0a1e1e)",
     repo: "https://github.com/vinamra1102/resume_profile",
     live: "https://resume-profile-three.vercel.app",
+    image: "/projects/resume-website.png",
   },
   {
     num: "16",
@@ -227,7 +235,6 @@ export const projects: Project[] = [
     category: "fullstack",
     gradient: "linear-gradient(135deg, #090909, #0a1826)",
     repo: "https://github.com/vinamra1102/GigFinder",
-    live: "https://gigfinder.up.railway.app",
   },
   {
     num: "19",
